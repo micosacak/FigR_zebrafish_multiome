@@ -1,0 +1,29 @@
+This code can be used to analyse zebrafish multiome data.
+
+STEP-1: perform multiome analyses using Seurat/Signac and generate a seurat object with cluster annotated in meta.data; such as main.cells
+
+STEP-2: edit the figR code with paths to the seurat object.
+
+STEP-3: bash copy_files.sh 1 3 1:5
+
+1 3; are the sample IDs in the meta.data, such as the_samples
+1:5; are the cluster IDs in the meta.data, such as the_cluster
+
+this bash will generate R and bash files as below:
+01_jobXX_idxYY.R --> 01_job01_idx01.R (sample 1 cluster 1)
+01_jobXX_idxYY.R --> 01_job02_idx01.R (sample 1 cluster 2)
+01_jobXX_idxYY.R --> 01_job03_idx01.R (sample 1 cluster 2)
+01_jobXX_idxYY.R --> 01_job01_idx02.R (sample 2 cluster 1)
+01_jobXX_idxYY.R --> 01_job02_idx02.R (sample 2 cluster 2)
+01_jobXX_idxYY.R --> 01_job03_idx02.R (sample 2 cluster 2)
+...
+
+similarly bash files such as; 
+01_jobXX_idxYY.sh --> 01_job01_idx01.sh (sample 1 cluster 1)
+01_jobXX_idxYY.sh --> 01_job02_idx01.sh (sample 1 cluster 2)
+01_jobXX_idxYY.sh --> 01_job03_idx01.sh (sample 1 cluster 2)
+
+
+STEP-4: bash runAll_bash.sh 1 3 1:5.
+
+this will submit the jobs based R and bash files generated at step-3
